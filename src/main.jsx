@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 
 import Header from "./header.jsx";
 import Maps from "./maps.jsx";
+import Object from "./object.jsx"; 
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -14,6 +15,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     </h1>
     <div className="mt-10 w-5/6 m-auto">
       <Maps />
+    </div>
+    <div className="mt-2">
+      < Object />
     </div>
   </React.StrictMode>
 );
