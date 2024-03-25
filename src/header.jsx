@@ -6,7 +6,7 @@ function header() {
   return (
     <header className="m-2 flex fixed top-2 w-full">
       <img src={IMAGES["logo"]} className="w-24" alt="" />
-      <div className="bg-purple w-1/3 m-auto rounded-full flex space-x-8 justify-center p-4">
+      <div className="bg-purple w-3/4  xl:w-1/3 m-auto rounded-full flex space-x-8 justify-center p-4">
         <a
           href=""
           className="text-blue text-xl transition ease-in-out delay-150   hover:text-sky duration-300"
