@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 
 import Header from "./header.jsx";
 import Maps from "./maps.jsx";
-import Objet from "./object.jsx";
+import Objet from "./buggy/object.jsx";
 
 import "./index.css";
 
@@ -17,8 +17,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <Maps />
     </div>
     <div className="mt-2">
-     { // <Objet />
-     }
+      <Objet />
     </div>
   </React.StrictMode>
 );
