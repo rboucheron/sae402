@@ -1,9 +1,8 @@
-
-
-import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import { useEffect, useRef } from 'react';
-import BuggyGLB from './Buggy.glb';
+import * as THREE from "three";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { useEffect, useRef } from "react";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import BuggyGLB from "./Buggy.glb";
 
 function Object() {
   const refContainer = useRef(null);
@@ -17,45 +16,40 @@ function Object() {
       0.1,
       1000
     );
+
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
-
-    refContainer.current &&
-      refContainer.current.appendChild(renderer.domElement);
-
-    // Changer la couleur du fond de la scène
-    scene.background = new THREE.Color(0xabcdef); // Couleur hexadécimale
-
-    // Ajout d'une lumière ambiante
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // Couleur et intensité
+    const canvas = renderer.domElement;
+    refContainer.current && refContainer.current.appendChild(canvas);
+    scene.background = new THREE.Color(0xf4f6f6);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
     scene.add(ambientLight);
-
-    // Ajout d'une lumière directionnelle
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5); // Couleur et intensité
-    directionalLight.position.set(1, 1, 1).normalize(); // Position de la lumière
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+    directionalLight.position.set(1, 1, 1).normalize();
     scene.add(directionalLight);
 
-    // Chargez le fichier GLB
     loader.load(
       BuggyGLB,
+
       function (gltf) {
         const object = gltf.scene;
         scene.add(object);
-
-        // Ajustez la position de la caméra pour voir l'objet
         camera.position.z = 2;
+        const controls = new OrbitControls(camera, canvas);
+        controls.update();
 
-        // Fonction d'animation
         const animate = function () {
           requestAnimationFrame(animate);
-          object.position.x = 3; 
-          object.position.y = -5;
+          object.position.x = 3;
+          object.position.y = -7;
           object.position.z = -10;
-          object.rotation.y += 0.01;
+          controls.update();
           renderer.render(scene, camera);
         };
+
         animate();
       },
+
       undefined,
       function (error) {
         console.error(error);
@@ -63,7 +57,11 @@ function Object() {
     );
   }, []);
 
-  return <div ref={refContainer}></div>;
+  return (
+    <>
+      <div ref={refContainer}></div>
+    </>
+  );
 }
 
 export default Object;
