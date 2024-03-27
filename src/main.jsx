@@ -2,22 +2,29 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 
 import Header from "./header.jsx";
-import Maps from "./maps.jsx";
+
 import Objet from "./buggy/object.jsx";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Home from "./home.jsx";
 
 import "./index.css";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: < Home />,
+  },
+  {
+    path: "/object",
+    element: <div className="mt-2"><Objet /></div>,
+  },
+]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Header />
-    <h1 className="w-full text-center text-3xl text-blue mt-40">
-      Devine dans quelles pays se trouve la plus part des communautés amish ?{" "}
-    </h1>
-    <div className="mt-10 w-5/6 m-auto">
-      <Maps />
-    </div>
-    <div className="mt-2">
-      <Objet />
-    </div>
+    <React.StrictMode>
+      <RouterProvider router={router} />
+    </React.StrictMode>
   </React.StrictMode>
 );
