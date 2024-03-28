@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Objet from "./buggy/object.jsx";
+import Statement from "./statement";
 
 function Maps() {
   const [country, setCountry] = useState(false);
@@ -13,8 +13,7 @@ function Maps() {
       {!country ? (
         <>
           <h1 className="w-full text-center text-3xl text-blue mt-40 mb-10">
-            Dans quelles pays se trouve la plus part des communautés
-            amish ?
+            Dans quelles pays se trouve la plus part des communautés amish ?
           </h1>
           <svg
             width="100%"
@@ -1252,7 +1251,9 @@ function Maps() {
           </svg>
         </>
       ) : (
-        <Objet />
+        <>
+          < Statement />
+        </>
       )}
     </>
   );

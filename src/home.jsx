@@ -4,7 +4,7 @@ function home() {
   return (
     <>
    
-      <div className="mt-10 w-5/6 m-auto">
+      <div className="mt-10 ">
         <Maps />
       </div>
     </>
